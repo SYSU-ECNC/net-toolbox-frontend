@@ -3,13 +3,9 @@
 </template>
 
 <script lang="ts">
-import {NGradientText} from 'naive-ui'
 import {defineComponent} from 'vue'
 export default defineComponent({
         name:'HelloUser',
-        components:{
-            NGradientText
-        },
         data(){
             return{
                 time:' ',
@@ -42,7 +38,7 @@ export default defineComponent({
                 this.getUserName()
             }
     })
-</script>>
+</script>
 
 <style>
 template{
