@@ -1,9 +1,10 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import PingForm from './components/PingForm.vue'
-import NotFound from './components/NotFound.vue'
-import AgentManagement from './components/AgentManagement.vue'
-import {createRouter, createWebHashHistory} from 'vue-router'
+import { createApp } from 'vue';
+import { createRouter, createWebHashHistory } from 'vue-router';
+
+import App from './App.vue';
+import AgentManagement from './components/AgentManagement.vue';
+import NotFound from './components/NotFound.vue';
+import PingForm from './components/PingForm.vue';
 
 const routes = [
   {
@@ -15,14 +16,14 @@ const routes = [
     component: AgentManagement,
   },
   {
-      path: '/',
-      component: NotFound,
-  }
-]
+    path: '/',
+    component: NotFound,
+  },
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-})
+});
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).mount('#app');

@@ -1,35 +1,57 @@
 <template>
   <div>
     <header>
-      <HelloUser id='hellouser'/>
-      <n-button id='ping' strong secondary type='info' onclick='window.location.href="#/ping"'>Ping一下</n-button>
-      <n-button id='agent' strong secondary type='info' onclick="window.location.href='#/agent'">Agent管理</n-button>
+      <HelloUser id="hellouser" />
+      <n-button
+        id="ping"
+        strong
+        secondary
+        type="info"
+        onclick='window.location.href="#/ping"'
+        >Ping一下</n-button
+      >
+      <n-button
+        id="agent"
+        strong
+        secondary
+        type="info"
+        onclick="window.location.href='#/agent'"
+        >Agent管理</n-button
+      >
       <!--下面这个按钮应该要回到授权页面，但目前它只用来测试404页面-->
-      <n-button id='logout' strong secondary type='error' onclick="window.location.href='#/idk'">退出登录</n-button>
+      <n-button
+        id="logout"
+        strong
+        secondary
+        type="error"
+        onclick="window.location.href='#/idk'"
+        >退出登录</n-button
+      >
     </header>
     <main>
-      <div id='blank'></div>
+      <div id="blank"></div>
       <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script lang="ts">
-import {NButton} from 'naive-ui'
-import '../node_modules/vfonts/OpenSans.css'
-import HelloUser from './components/HelloUser.vue'
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
+
+import { NButton } from 'naive-ui';
+
+import '../node_modules/vfonts/OpenSans.css';
+import HelloUser from './components/HelloUser.vue';
 
 export default defineComponent({
   components: {
     HelloUser,
-    NButton
+    NButton,
   },
-})
+});
 </script>
 
 <style>
-
 #app {
   font-family: v-sans, v-mono, other-fallbacks;
   -webkit-font-smoothing: antialiased;
@@ -38,31 +60,30 @@ export default defineComponent({
   color: #2c3e50;
   margin-top: 60px;
 }
-header{
-  width:90%;
+header {
+  width: 90%;
   margin-left: 80px;
   display: grid;
   grid-template-columns: 70% 10% 10% 10%;
-  grid-template-rows:30px
+  grid-template-rows: 30px;
 }
-#hellouser{
-  justify-self:left;
+#hellouser {
+  justify-self: left;
   align-self: center;
 }
-#agent{
-  justify-self:center;
-  align-self: center;
-  
-}
-#ping{
+#agent {
   justify-self: center;
   align-self: center;
 }
-#logout{
+#ping {
   justify-self: center;
   align-self: center;
 }
-#blank{
-  height:20px
+#logout {
+  justify-self: center;
+  align-self: center;
+}
+#blank {
+  height: 20px;
 }
 </style>
