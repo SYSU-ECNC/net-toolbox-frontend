@@ -9,53 +9,23 @@
     </header>
     <main>
       <div id='blank'></div>
-      <component :is='currentView' />
+      <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloUser from './components/hellouser.vue'
-import PingForm from './components/pingform.vue'
-import AgentManagement from './components/agentmamagement.vue'
-import MyHome from './App.vue'
-import NotFound from './components/notfound.vue'
 import {NButton} from 'naive-ui'
 import '../node_modules/vfonts/OpenSans.css'
+import HelloUser from './components/HelloUser.vue'
+import { defineComponent } from 'vue'
 
-const routes = {
-  '/':MyHome,
-  '/ping':PingForm,
-  '/agent':AgentManagement,
-}
-
-@Options({
+export default defineComponent({
   components: {
-    MyHome,
-    AgentManagement,
-    NotFound,
     HelloUser,
-    PingForm,
     NButton
   },
 })
-export default class App extends Vue {
-  data(){
-    return{
-      currentPath:window.location.hash
-    }
-  },
-  mounted(){
-    window.addEventListener('hashchange',()=>{
-      this.currentPath = window.location.hash
-    })
-  },
-  get currentView(){
-    return routes[this.currentPath.slice(1) || '/'] || NotFound
-  }
-  }
-}
 </script>
 
 <style>
