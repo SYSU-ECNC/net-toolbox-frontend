@@ -35,10 +35,12 @@
 </template>
 
 <script lang="ts">
-import {NButton} from 'naive-ui'
-import '../node_modules/vfonts/Inter.css'
-import HelloUser from './components/HelloUser.vue'
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
+
+import { NButton } from 'naive-ui';
+
+import '../node_modules/vfonts/Inter.css';
+import HelloUser from './components/HelloUser.vue';
 
 export default defineComponent({
   components: {
@@ -81,7 +83,7 @@ header {
   justify-self: center;
   align-self: center;
 }
-router-view{
+router-view {
   padding-top: 10px;
 }
 </style>

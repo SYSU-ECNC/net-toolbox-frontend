@@ -3,20 +3,19 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name:'FetchUserName',
-    data(){
-        return{
-            isLogin:false,
-            userName: 'null'
-        }
-    },
-    reDirect() {
-      //if isLogin == false...else...
-    },
-    getUserName() {
-      //获取用户名
-    },
+  name: 'FetchUserName',
+  data() {
+    return {
+      isLogin: false,
+      userName: 'null',
+    };
   },
-);
+  reDirect() {
+    //if isLogin == false...else...
+  },
+  getUserName() {
+    //获取用户名
+  },
+});
 </script>
 >
