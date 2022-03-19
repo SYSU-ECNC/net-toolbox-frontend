@@ -1,0 +1,19 @@
+{"agents":[
+    {
+        "name":"M1",
+        "is_online":true
+    },
+    {
+        "name":"G3",
+        "is_online":true
+    },
+    {
+        "name":"S5",
+        "is_online":false
+    },
+    {
+        "name":"Z7",
+        "is_online":false
+    }
+]
+}

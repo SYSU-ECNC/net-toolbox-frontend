@@ -1,10 +1,11 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
-
 import App from './App.vue';
 import AgentManagement from './components/AgentManagement.vue';
 import NotFound from './components/NotFound.vue';
-import PingForm from './components/PingForm.vue';
+import PingForm from './components/PingForm.vue'
+import DefaultPage from './components/DefaultPage.vue'
+
 
 const routes = [
   {
@@ -16,10 +17,14 @@ const routes = [
     component: AgentManagement,
   },
   {
-    path: '/',
-    component: NotFound,
+    path:'/',
+    component: DefaultPage,
   },
-];
+  {
+    path: '/:pathMatch(.*)*',
+    component: NotFound,
+  }
+]
 
 const router = createRouter({
   history: createWebHashHistory(),

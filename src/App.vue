@@ -29,19 +29,16 @@
       >
     </header>
     <main>
-      <div id="blank"></div>
       <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-
-import { NButton } from 'naive-ui';
-
-import '../node_modules/vfonts/OpenSans.css';
-import HelloUser from './components/HelloUser.vue';
+import {NButton} from 'naive-ui'
+import '../node_modules/vfonts/Inter.css'
+import HelloUser from './components/HelloUser.vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   components: {
@@ -56,9 +53,10 @@ export default defineComponent({
   font-family: v-sans, v-mono, other-fallbacks;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  text-align: center;
+  font-weight: 400;
 }
 header {
   width: 90%;
@@ -83,7 +81,7 @@ header {
   justify-self: center;
   align-self: center;
 }
-#blank {
-  height: 20px;
+router-view{
+  padding-top: 10px;
 }
 </style>

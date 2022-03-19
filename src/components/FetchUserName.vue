@@ -3,20 +3,12 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'getUserName',
-  data() {
-    return {
-      isLogin: false,
-      userName: 'null',
-    };
-  },
-  mounted() {
-    this.getLogin();
-    this.reDirect();
-  },
-  methods: {
-    getLogin() {
-      //获取登录态boolean？
+    name:'FetchUserName',
+    data(){
+        return{
+            isLogin:false,
+            userName: 'null'
+        }
     },
     reDirect() {
       //if isLogin == false...else...
@@ -25,6 +17,6 @@ export default defineComponent({
       //获取用户名
     },
   },
-});
+);
 </script>
 >
