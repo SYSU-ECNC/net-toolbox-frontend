@@ -1,4 +1,5 @@
 <template>
+
   <h1 size="30">{{ time }}好，{{ username }}。</h1>
 </template>
 
@@ -46,3 +47,4 @@ template {
   font-family: v-sans, v-mono, other-fallbacks;
 }
 </style>
+

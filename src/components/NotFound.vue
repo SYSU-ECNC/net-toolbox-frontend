@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div id="blank"></div>
     <n-result
       status="404"
@@ -34,3 +35,4 @@ export default defineComponent({
   height: 150px;
 }
 </style>
+

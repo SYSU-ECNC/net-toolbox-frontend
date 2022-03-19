@@ -29,12 +29,14 @@
       >
     </header>
     <main>
+
       <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script lang="ts">
+
 import { defineComponent } from 'vue';
 
 import { NButton } from 'naive-ui';
@@ -42,19 +44,23 @@ import { NButton } from 'naive-ui';
 import '../node_modules/vfonts/Inter.css';
 import HelloUser from './components/HelloUser.vue';
 
+
 export default defineComponent({
   components: {
     HelloUser,
+
     NButton,
   },
 });
 </script>
 
 <style>
+
 #app {
   font-family: v-sans, v-mono, other-fallbacks;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   color: #2c3e50;
   margin-top: 60px;
   text-align: center;
@@ -85,5 +91,6 @@ header {
 }
 router-view {
   padding-top: 10px;
+
 }
 </style>
