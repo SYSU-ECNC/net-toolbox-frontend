@@ -1,7 +1,7 @@
 <template>
-  <div id="pingform">
-    <h2 id="pingheader">发起测试</h2>
-    <n-button text type="info" id="selectagent">选择Agent</n-button>
+  <div id="ping-form">
+    <h2 id="ping-header">发起测试</h2>
+    <n-button text type="info" id="select-agent">选择Agent</n-button>
     <n-select
       id="selector"
       v-model:value="chosenvalue"
@@ -11,17 +11,17 @@
       :options="opt"
       clearable
     />
-    <n-button text type="info" id="inputurl">目标参数</n-button>
+    <n-button text type="info" id="input-url">目标参数</n-button>
     <n-input
       id="to-ping"
       v-model:value="to_ping"
       type="text"
       placeholder="在这里输入你要Ping的地址"
     />
-    <n-button type="info" @click="GoPing" id="go-ping">Go!</n-button>
+    <n-button type="info" @click="goPing" id="go-ping">Go!</n-button>
 
-    <h2 id="pingmanagement">管理测试</h2>
-    <n-data-table id="pingtable" :columns="columns" :data="data"></n-data-table>
+    <h2 id="ping-management">管理测试</h2>
+    <n-data-table id="ping-table" :columns="columns" :data="data"></n-data-table>
   </div>
 </template>
 
@@ -60,7 +60,7 @@ export default defineComponent({
     NDataTable,
   },
   methods: {
-    GoPing() {
+    goPing() {
       //这里用来提交指令到Master
     },
   },
@@ -90,7 +90,7 @@ export default defineComponent({
 });
 </script>
 <style>
-#pingform {
+#ping-form {
   margin-left: 80px;
   margin-right: 80px;
   margin-top: 30px;
@@ -102,17 +102,17 @@ export default defineComponent({
   align-items: center;
 }
 
-#pingheader {
+#ping-header {
   grid-column-start: 1;
   grid-column-end: 2;
   justify-self: start;
 }
-#selectagent {
+#select-agent {
   grid-column-start: 1;
   grid-row-start: 2;
   justify-self: start;
 }
-#inputurl {
+#input-url {
   grid-column-start: 1;
   grid-row-start: 3;
   justify-self: start;
@@ -133,13 +133,13 @@ export default defineComponent({
   grid-column-end: 4;
   grid-row-start: 4;
 }
-#pingmanagement {
+#ping-management {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 5;
   justify-self: start;
 }
-#pingtable {
+#ping-table {
   grid-row-start: 6;
   grid-column-start: 1;
   grid-column-end: 4;
