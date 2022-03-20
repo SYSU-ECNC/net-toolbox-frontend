@@ -18,7 +18,7 @@
       type="text"
       placeholder="在这里输入你要Ping的地址"
     />
-    <n-button type="info" @click="GoPing" id="go-ping">Go!</n-button>
+    <n-button type="info" @click="goPing" id="go-ping">Go!</n-button>
 
     <h2 id="pingmanagement">管理测试</h2>
     <n-data-table id="pingtable" :columns="columns" :data="data"></n-data-table>
