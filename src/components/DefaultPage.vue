@@ -1,6 +1,5 @@
 <template text-align="center">
-  <div id="blank"></div>
-  <n-result
+  <n-result id="welcome"
     status="418"
     title="欢迎来到ECNC网络工具箱！"
     description="点选上方选项以开始，或者"
@@ -23,7 +22,7 @@ export default defineComponent({
 });
 </script>
 <style>
-#blank {
-  height: 150px;
+#welcome {
+  margin-top: 150px;
 }
 </style>

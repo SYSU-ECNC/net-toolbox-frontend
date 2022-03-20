@@ -4,7 +4,7 @@
     <n-button text type="info" id="select-agent">选择Agent</n-button>
     <n-select
       id="selector"
-      v-model:value="chosenvalue"
+      v-model:value="chosenValue"
       multiple
       filterable
       placeholder="搜索Agent..."
@@ -14,7 +14,7 @@
     <n-button text type="info" id="input-url">目标参数</n-button>
     <n-input
       id="to-ping"
-      v-model:value="to_ping"
+      v-model:value="toPing"
       type="text"
       placeholder="在这里输入你要Ping的地址"
     />
@@ -66,8 +66,8 @@ export default defineComponent({
   },
   data() {
     return {
-      chosenvalue: '',
-      to_ping: '',
+      chosenValue: '',
+      toPing: '',
     };
   },
   setup() {

@@ -11,7 +11,7 @@ export default defineComponent({
       userName: 'null',
     };
   },
-  reDirect() {
+  redirect() {
     //if isLogin == false...else...
   },
   getUserName() {

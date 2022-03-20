@@ -1,5 +1,4 @@
 <template>
-
   <h1 size="30">{{ time }}好，{{ username }}。</h1>
 </template>
 

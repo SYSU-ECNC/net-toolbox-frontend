@@ -1,8 +1,6 @@
 <template>
   <div>
-
-    <div id="blank"></div>
-    <n-result
+    <n-result id="not-found"
       status="404"
       title="404 资源不存在"
       description="生活总归带点荒谬"
@@ -31,8 +29,7 @@ export default defineComponent({
 </script>
 
 <style>
-#blank {
-  height: 150px;
+#not-found {
+  margin-top: 150px;
 }
 </style>
-
