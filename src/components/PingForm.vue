@@ -60,7 +60,7 @@ export default defineComponent({
     NDataTable,
   },
   methods: {
-    GoPing() {
+    goPing() {
       //这里用来提交指令到Master
     },
   },
