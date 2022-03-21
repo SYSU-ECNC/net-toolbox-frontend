@@ -1,6 +1,5 @@
 <script lang="ts">
 //暂时胡编乱造了一番，希望人没事
-
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -20,4 +19,3 @@ export default defineComponent({
 });
 </script>
 >
-

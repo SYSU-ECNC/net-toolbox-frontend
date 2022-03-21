@@ -5,6 +5,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+
 export default defineComponent({
   name: 'HelloUser',
   data() {
@@ -31,7 +32,7 @@ export default defineComponent({
     },
     getUserName() {
       this.username = 'Admin';
-      //不知道写啥，应该是从fetchusername组件获得username，总之先占个位置在这里
+      //虽然没想明白。。。
     },
   },
   mounted() {

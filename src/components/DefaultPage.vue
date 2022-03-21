@@ -1,5 +1,6 @@
 <template text-align="center">
-  <n-result id="welcome"
+  <n-result
+    id="welcome"
     status="418"
     title="欢迎来到ECNC网络工具箱！"
     description="点选上方选项以开始，或者"

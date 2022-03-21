@@ -16,12 +16,16 @@
       id="to-ping"
       v-model:value="toPing"
       type="text"
-      placeholder="在这里输入你要Ping的地址"
+      placeholder="在这里输入你要Ping的地址，例：www.bilibili.com"
     />
     <n-button type="info" @click="goPing" id="go-ping">Go!</n-button>
 
     <h2 id="ping-management">管理测试</h2>
-    <n-data-table id="ping-table" :columns="columns" :data="data"></n-data-table>
+    <n-data-table
+      id="ping-table"
+      :columns="columns"
+      :data="data"
+    ></n-data-table>
   </div>
 </template>
 

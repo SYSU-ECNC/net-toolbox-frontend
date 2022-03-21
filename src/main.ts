@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
+
 import App from './App.vue';
 import AgentManagement from './components/AgentManagement.vue';
 import DefaultPage from './components/DefaultPage.vue';
@@ -16,7 +17,6 @@ const routes = [
     component: AgentManagement,
   },
   {
-
     path: '/',
     component: DefaultPage,
   },
@@ -32,4 +32,3 @@ const router = createRouter({
 });
 
 createApp(App).use(router).mount('#app');
-

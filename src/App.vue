@@ -7,7 +7,8 @@
         strong
         secondary
         type="info"
-        onclick='window.location.href="#/ping"'
+        tag="a"
+        href="#/ping"
         >Ping一下</n-button
       >
       <n-button
@@ -15,7 +16,8 @@
         strong
         secondary
         type="info"
-        onclick="window.location.href='#/agent'"
+        tag="a"
+        href="#/agent"
         >Agent管理</n-button
       >
       <!--下面这个按钮应该要回到授权页面，但目前它只用来测试404页面-->
@@ -24,38 +26,33 @@
         strong
         secondary
         type="error"
-        onclick="window.location.href='#/idk'"
+        tag="a"
+        href="#/idk"
         >退出登录</n-button
       >
     </header>
     <main>
-
       <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script lang="ts">
-
 import { defineComponent } from 'vue';
-
 import { NButton } from 'naive-ui';
 
 import '../node_modules/vfonts/Inter.css';
 import HelloUser from './components/HelloUser.vue';
 
-
 export default defineComponent({
   components: {
     HelloUser,
-
     NButton,
   },
 });
 </script>
 
 <style>
-
 #app {
   font-family: v-sans, v-mono, other-fallbacks;
   -webkit-font-smoothing: antialiased;
@@ -91,6 +88,5 @@ header {
 }
 router-view {
   padding-top: 10px;
-
 }
 </style>
