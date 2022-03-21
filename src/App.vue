@@ -2,37 +2,19 @@
   <div>
     <header>
       <HelloUser id="hellouser" />
-      <n-button circle type="info" id="information" secondary> 
+      <n-button circle type="info" id="information" secondary>
         <template #icon>
-          <n-icon><info-icon/></n-icon>
+          <n-icon><info-icon /></n-icon>
         </template>
       </n-button>
-      <n-button
-        id="ping"
-        strong
-        secondary
-        type="info"
-        tag="a"
-        href="#/ping"
+      <n-button id="ping" strong secondary type="info" tag="a" href="#/ping"
         >Ping一下</n-button
       >
-      <n-button
-        id="agent"
-        strong
-        secondary
-        type="info"
-        tag="a"
-        href="#/agent"
+      <n-button id="agent" strong secondary type="info" tag="a" href="#/agent"
         >Agent管理</n-button
       >
       <!--下面这个按钮应该要回到授权页面，但目前它只用来测试404页面-->
-      <n-button
-        id="logout"
-        strong
-        secondary
-        type="error"
-        tag="a"
-        href="#/idk"
+      <n-button id="logout" strong secondary type="error" tag="a" href="#/idk"
         >退出登录</n-button
       >
     </header>
@@ -44,8 +26,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { NButton,NIcon } from 'naive-ui';
-import {Information as InfoIcon}from '@vicons/ionicons5'
+
+import { Information as InfoIcon } from '@vicons/ionicons5';
+import { NButton, NIcon } from 'naive-ui';
+
 import '../node_modules/vfonts/Inter.css';
 import HelloUser from './components/HelloUser.vue';
 
@@ -54,7 +38,7 @@ export default defineComponent({
     HelloUser,
     NButton,
     NIcon,
-    InfoIcon
+    InfoIcon,
   },
 });
 </script>
@@ -93,7 +77,7 @@ header {
   justify-self: center;
   align-self: center;
 }
-#information{
+#information {
   justify-self: right;
   align-self: center;
 }

@@ -1,4 +1,4 @@
-: any<template>
+<template>
   <div id="ping-form">
     <h2 id="ping-header">发起测试</h2>
     <n-button text type="info" id="select-agent">选择Agent</n-button>
@@ -19,7 +19,7 @@
       placeholder="在这里输入你要Ping的地址，例：www.bilibili.com"
     />
     <n-button text type="info" id="input-number">发包数量</n-button>
-     <n-input
+    <n-input
       id="pack-number"
       v-model:value="packNumber"
       type="text"
@@ -39,31 +39,34 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 import { NButton, NDataTable, NInput, NSelect } from 'naive-ui';
 
+const createColumns = () => {
+  return [
+    {
+      type: 'expand',
+      expandable: (rowData: any) => rowData.isDone == '已完成',
+      renderExpand: (tableData: any) => {
+        return `${tableData.details}`;
+      },
+    },
+    {
+      title: '时间',
+      key: 'time',
+    },
+    {
+      title: 'agents',
+      key: 'agents',
+    },
+    {
+      title: '状态',
+      key: 'isDone',
+    },
+  ];
+};
 
-const tableColumns = [
-  {
-    title:'时间',
-    key:'time'
-  },
-  {
-    title:'agents',
-    key:'agents'
-  },
-  {
-    title:'状态',
-    key:'isDone',
-  },
-  {
-    title:'详情',
-    key:'details',
-    width:300,
-    ellipsis:{
-      tooltip:true
-    }
-  }
-]
+const tableColumns = createColumns();
 
 //下面的opt和tableData都是仅供演示，之后改成从接口获取数据。tableData有这么多行是为了测试滚动条……
 var opt = [
@@ -76,57 +79,63 @@ var opt = [
     value: 'M8',
     disabled: true,
   },
-]
+];
 
 var tableData = [
   {
-    time:'2022.2.2 12:22',
-    agents:'M5',
-    isDone:'true',
-    details:'--- weibo.com ping statistics ---6 packets transmitted, 6 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 45.767/66.305/139.275/32.939 ms'
+    time: '2022.2.2 12:22',
+    agents: 'M5',
+    isDone: 'true',
+    details:
+      '--- weibo.com ping statistics ---6 packets transmitted, 6 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 45.767/66.305/139.275/32.939 ms',
   },
   {
-    time:'2022.2.3 23:33',
-    agents:'M8',
-    isDone:'false',
-    details:'--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms'
+    time: '2022.2.3 23:33',
+    agents: 'M8',
+    isDone: 'false',
+    details:
+      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
   },
   {
-    time:'2022.2.3 23:33',
-    agents:'M8',
-    isDone:'false',
-    details:'--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms'
+    time: '2022.2.3 23:33',
+    agents: 'M8',
+    isDone: 'false',
+    details:
+      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
   },
   {
-    time:'2022.2.3 23:33',
-    agents:'M8',
-    isDone:'false',
-    details:'--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms'
+    time: '2022.2.3 23:33',
+    agents: 'M8',
+    isDone: 'false',
+    details:
+      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
   },
   {
-    time:'2022.2.3 23:33',
-    agents:'M8',
-    isDone:'false',
-    details:'--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms'
+    time: '2022.2.3 23:33',
+    agents: 'M8',
+    isDone: 'false',
+    details:
+      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
   },
   {
-    time:'2022.2.3 23:33',
-    agents:'M8',
-    isDone:'false',
-    details:'--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms'
-  }
-]
+    time: '2022.2.3 23:33',
+    agents: 'M8',
+    isDone: 'false',
+    details:
+      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
+  },
+];
 
-function tableDataProcess(){
-      //之后从后端获取JSON，在这里加一句JSON.parse……话说在JSON里写'true'的话，转换过来应该也还是字符串吧？
-      for(var i=0;i<tableData.length;i++){
-        if (tableData[i].isDone == 'true'){
-          tableData[i].isDone = '已完成'
-        }else{
-          tableData[i].isDone = '进行中'
-        }
-      }
+function tableDataProcess() {
+  //之后从后端获取JSON，在这里加一句JSON.parse……话说在JSON里写'true'的话，转换过来应该也还是字符串吧？
+  for (var i = 0; i < tableData.length; i++) {
+    if (tableData[i].isDone == 'true') {
+      tableData[i].isDone = '已完成';
+    } else {
+      tableData[i].isDone = '进行中';
     }
+  }
+}
 
 export default defineComponent({
   name: 'PingForm',
@@ -139,7 +148,7 @@ export default defineComponent({
   methods: {
     goPing() {
       //这里用来提交指令到Master
-    }
+    },
   },
   data() {
     return {
@@ -148,13 +157,13 @@ export default defineComponent({
       tableColumns,
       opt,
       tableData,
-      packNumber:''
+      packNumber: '',
     };
   },
-  setup(){
-    tableDataProcess()
-    return(tableData)
-  }
+  setup() {
+    tableDataProcess();
+    return tableData;
+  },
 });
 </script>
 <style>
@@ -212,12 +221,12 @@ export default defineComponent({
   grid-column-end: 6;
   align-self: flex-start;
 }
-#input-number{
+#input-number {
   grid-row-start: 3;
   grid-column-start: 4;
-  grid-column-end:5;
+  grid-column-end: 5;
 }
-#pack-number{
+#pack-number {
   grid-row-start: 3;
   grid-column-start: 5;
   grid-column-end: 6;

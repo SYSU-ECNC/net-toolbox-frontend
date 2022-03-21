@@ -46,4 +46,3 @@ template {
   font-family: v-sans, v-mono, other-fallbacks;
 }
 </style>
-
