@@ -3,6 +3,7 @@
     <h2 id="agent-title">Agent管理</h2>
     <n-button text type="info" id="register-token">注册Token:</n-button>
     <p id="real-token">这里是一个字符串这里是一个字符串</p>
+    <n-button type="warning" secondary id="reset-token">重置Token</n-button>
     <n-data-table id="agent-table" :columns="agentColumns" />
   </div>
 </template>
@@ -69,6 +70,10 @@ export default defineComponent({
 #real-token {
   grid-column-start: 2;
   grid-column-end: 5;
+  grid-row-start: 2;
+}
+#reset-token{
+  grid-column-start: 5;
   grid-row-start: 2;
 }
 #agent-table {
