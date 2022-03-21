@@ -2,6 +2,11 @@
   <div>
     <header>
       <HelloUser id="hellouser" />
+      <n-button circle type="info" id="information" secondary> 
+        <template #icon>
+          <n-icon><info-icon/></n-icon>
+        </template>
+      </n-button>
       <n-button
         id="ping"
         strong
@@ -39,8 +44,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { NButton } from 'naive-ui';
-
+import { NButton,NIcon } from 'naive-ui';
+import {Information as InfoIcon}from '@vicons/ionicons5'
 import '../node_modules/vfonts/Inter.css';
 import HelloUser from './components/HelloUser.vue';
 
@@ -48,6 +53,8 @@ export default defineComponent({
   components: {
     HelloUser,
     NButton,
+    NIcon,
+    InfoIcon
   },
 });
 </script>
@@ -67,7 +74,7 @@ header {
   width: 90%;
   margin-left: 80px;
   display: grid;
-  grid-template-columns: 70% 10% 10% 10%;
+  grid-template-columns: 60% 10% 10% 10% 10%;
   grid-template-rows: 30px;
 }
 #hellouser {
@@ -84,6 +91,10 @@ header {
 }
 #logout {
   justify-self: center;
+  align-self: center;
+}
+#information{
+  justify-self: right;
   align-self: center;
 }
 router-view {
