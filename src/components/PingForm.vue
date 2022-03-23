@@ -33,6 +33,9 @@
       :columns="tableColumns"
       :data="tableData"
       :max-height="250"
+      :row-key="(tableData: any) => {
+        return `${tableData.time}`;
+      }"
     ></n-data-table>
   </div>
 </template>
@@ -46,7 +49,7 @@ const createColumns = () => {
   return [
     {
       type: 'expand',
-      expandable: (rowData: any) => rowData.isDone == '已完成',
+      expandable: (rowData: any) => rowData.isDone === '已完成',
       renderExpand: (tableData: any) => {
         return `${tableData.details}`;
       },
@@ -97,28 +100,28 @@ var tableData = [
       '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
   },
   {
-    time: '2022.2.3 23:33',
+    time: '2022.2.3 23:34',
+    agents: 'M8',
+    isDone: 'true',
+    details:
+      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
+  },
+  {
+    time: '2022.2.3 23:35',
     agents: 'M8',
     isDone: 'false',
     details:
       '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
   },
   {
-    time: '2022.2.3 23:33',
+    time: '2022.2.3 23:36',
     agents: 'M8',
     isDone: 'false',
     details:
       '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
   },
   {
-    time: '2022.2.3 23:33',
-    agents: 'M8',
-    isDone: 'false',
-    details:
-      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
-  },
-  {
-    time: '2022.2.3 23:33',
+    time: '2022.2.3 23:37',
     agents: 'M8',
     isDone: 'false',
     details:
