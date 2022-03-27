@@ -11,7 +11,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          ref: ci-workflow-from-dev
       - name: npm install and build webpack
         run: |
           npm install
@@ -29,7 +31,9 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         node-version: [12.x, 14.x, 16.x]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+      with:
+        ref: ci-workflow-from-dev
     - uses: actions/download-artifact@main
       with: 
         name: webpack artifacts
@@ -41,6 +45,6 @@ jobs:
     - name: npm install, and test
       run: |
         npm install
-        npm test
+        npx standard && npx jest
       env:
         CI: true
