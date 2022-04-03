@@ -45,6 +45,6 @@ jobs:
     - name: npm install, and test
       run: |
         npm install
-        npx standard && npx jest
+#         npx standard && npx jest
       env:
         CI: true
