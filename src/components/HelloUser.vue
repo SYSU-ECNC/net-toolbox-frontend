@@ -31,14 +31,17 @@ export default defineComponent({
       }
     },
     getUserName(){
-      axios.get('/Mock.json')
+      axios.get('/userInfo.json')
       .then(res=>{
-        console.log(res.data.data)
-        if (res.data.data.loginUrl == ''){
-          this.username = res.data.data.name;
+        console.log(res.data)
+        if (res.data.loginUrl == ''){
+          this.username = res.data.name;
         }else{
-          window.location.href=res.data.data.loginUrl;
+          window.location.href=res.data.loginUrl;
         }
+      })
+      .catch(error=>{
+        console.log('有内鬼，停止交易')
       })
     },
   },
