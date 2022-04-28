@@ -121,7 +121,7 @@ var tableData = [
       '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
   },
   {
-    time: '2022.2.3 23:37',
+    time: '2022.2.3 23:39',
     agents: 'M8',
     isDone: 'false',
     details:

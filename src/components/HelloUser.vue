@@ -4,13 +4,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import axios from 'axios';
 
 export default defineComponent({
   name: 'HelloUser',
   data() {
     return {
-      time: ' ',
-      username: ' ',
+      time: '',
+      username: '',
     };
   },
   methods: {
@@ -29,9 +30,16 @@ export default defineComponent({
         this.time = '下午';
       }
     },
-    getUserName() {
-      this.username = 'Admin';
-      //虽然没想明白。。。
+    getUserName(){
+      axios.get('/Mock.json')
+      .then(res=>{
+        console.log(res.data.data)
+        if (res.data.data.loginUrl == ''){
+          this.username = res.data.data.name;
+        }else{
+          window.location.href=res.data.data.loginUrl;
+        }
+      })
     },
   },
   mounted() {
