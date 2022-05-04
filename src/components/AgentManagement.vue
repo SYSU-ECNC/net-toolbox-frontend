@@ -4,14 +4,14 @@
     <n-button text type="info" id="register-token">注册Token:</n-button>
     <p id="real-token">这里是一个字符串这里是一个字符串</p>
     <n-button type="warning" secondary id="reset-token">重置Token</n-button>
-    <n-data-table id="agent-table" :columns="agentColumns" />
+    <n-data-table id="agent-table" :columns="agentColumns" :data='agents'/>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-
+import { defineComponent,h } from 'vue';
 import { NButton, NDataTable } from 'naive-ui';
+import axios from 'axios';
 
 const createColumns = () => {
   return [
@@ -21,14 +21,21 @@ const createColumns = () => {
     },
     {
       title: '在线情况',
-      key: 'is_online',
+      key: 'disabled',
     },
     {
-      title: '操作',
-      key: 'action',
-    },
-  ];
-};
+      title:'操作',
+      key:'action',
+      render(){
+        return h(
+          NButton,
+          {onclick:()=>window.alert('wow')},
+          {default:()=>"删除Agent"}
+        )
+        }
+      }
+    ]
+  }
 
 const agentColumns = createColumns();
 
@@ -41,9 +48,29 @@ export default defineComponent({
   data() {
     return {
       agentColumns,
+      agents:[]
     };
   },
-});
+  mounted(){
+    axios.get('/agent.json')
+    .then(res=>{
+      var agent_data = res.data.list
+      agent_data = JSON.parse(JSON.stringify(agent_data))
+      for(let i = 0;i<agent_data.length;i++){
+        if(agent_data[i].status == false){
+          agent_data[i].disabled = '停用'
+        }else{
+          agent_data[i].disabled = '启用'
+        }
+        delete agent_data[i].status
+        console.log(agent_data[i])
+      }
+      this.$data.agents = agent_data
+      return this.$data.agents
+    })
+  },
+  }
+)
 </script>
 
 <style>

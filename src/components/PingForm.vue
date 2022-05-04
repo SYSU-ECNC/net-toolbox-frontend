@@ -79,7 +79,7 @@ export default defineComponent({
     );
     axios.get('/agent.json')
     .then(res=>{
-      var agent_data = res.data.agents
+      var agent_data = res.data.list
       agent_data = JSON.parse(JSON.stringify(agent_data).replace(/name/g,"label"))
       for(let i = 0;i<agent_data.length;i++){
         agent_data[i].value = agent_data[i].label

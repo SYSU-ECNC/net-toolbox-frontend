@@ -1,5 +1,5 @@
 {
-  "agents":[
+  "list":[
   {
         "name": "agent1",
         "status": true
