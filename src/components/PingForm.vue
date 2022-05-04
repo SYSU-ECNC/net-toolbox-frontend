@@ -41,104 +41,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-
-import { NButton, NDataTable, NInput, NSelect } from 'naive-ui';
-
-const createColumns = () => {
-  return [
-    {
-      type: 'expand',
-      expandable: (rowData: any) => rowData.isDone === '已完成',
-      renderExpand: (tableData: any) => {
-        return `${tableData.details}`;
-      },
-    },
-    {
-      title: '时间',
-      key: 'time',
-    },
-    {
-      title: 'agents',
-      key: 'agents',
-    },
-    {
-      title: '状态',
-      key: 'isDone',
-    },
-  ];
-};
-
-const tableColumns = createColumns();
-
-//下面的opt和tableData都是仅供演示，之后改成从接口获取数据。tableData有这么多行是为了测试滚动条……
-var opt = [
-  {
-    label: 'M5',
-    value: 'M5',
-  },
-  {
-    label: 'M8',
-    value: 'M8',
-    disabled: true,
-  },
-];
-
-var tableData = [
-  {
-    time: '2022.2.2 12:22',
-    agents: 'M5',
-    isDone: 'true',
-    details:
-      '--- weibo.com ping statistics ---6 packets transmitted, 6 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 45.767/66.305/139.275/32.939 ms',
-  },
-  {
-    time: '2022.2.3 23:33',
-    agents: 'M8',
-    isDone: 'false',
-    details:
-      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
-  },
-  {
-    time: '2022.2.3 23:34',
-    agents: 'M8',
-    isDone: 'true',
-    details:
-      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
-  },
-  {
-    time: '2022.2.3 23:35',
-    agents: 'M8',
-    isDone: 'false',
-    details:
-      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
-  },
-  {
-    time: '2022.2.3 23:36',
-    agents: 'M8',
-    isDone: 'false',
-    details:
-      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
-  },
-  {
-    time: '2022.2.3 23:39',
-    agents: 'M8',
-    isDone: 'false',
-    details:
-      '--- bilibili.com ping statistics --- 4 packets transmitted, 4 packets received, 0.0% packet loss round-trip min/avg/max/stddev = 10.690/33.271/82.831/28.853 ms',
-  },
-];
-
-function tableDataProcess() {
-  //之后从后端获取JSON，在这里加一句JSON.parse……话说在JSON里写'true'的话，转换过来应该也还是字符串吧？
-  for (var i = 0; i < tableData.length; i++) {
-    if (tableData[i].isDone == 'true') {
-      tableData[i].isDone = '已完成';
-    } else {
-      tableData[i].isDone = '进行中';
-    }
-  }
-}
+import { defineComponent,h } from 'vue';
+import axios from 'axios';
+import { NButton, NDataTable, NInput, NSelect} from 'naive-ui';
 
 export default defineComponent({
   name: 'PingForm',
@@ -150,7 +55,7 @@ export default defineComponent({
   },
   methods: {
     goPing() {
-      //这里用来提交指令到Master
+      
     },
   },
   data() {
@@ -158,16 +63,67 @@ export default defineComponent({
       chosenValue: '',
       toPing: '',
       tableColumns,
-      opt,
-      tableData,
+      opt:[],
+      tableData:[],
       packNumber: '',
     };
   },
-  setup() {
-    tableDataProcess();
-    return tableData;
+  mounted(){
+    axios.get('/task_list.json')
+    .then(res=>{
+      var tableData=res.data.task_list;
+      this.tableData = tableData
+    })
+    .catch(error=>
+      console.log(error)
+    );
+    axios.get('/agent.json')
+    .then(res=>{
+      var agent_data = res.data.agents
+      agent_data = JSON.parse(JSON.stringify(agent_data).replace(/name/g,"label"))
+      for(let i = 0;i<agent_data.length;i++){
+        agent_data[i].value = agent_data[i].label
+        if(agent_data[i].status == false){
+          agent_data[i].disabled = true
+        }
+        delete agent_data[i].status
+        console.log(agent_data[i])
+      }
+      this.$data.opt = agent_data
+      return this.$data.opt
+    })
   },
 });
+
+const createColumns = () => {
+  return [
+    {
+      title: 'ID',
+      key: 'task_id',
+    },
+    {
+      title: '时间',
+      key: 'at',
+    },
+    {
+      title: '指令',
+      key: 'command',
+    },
+    {
+      title:'详情',
+      key:'detail',
+      render(){
+        return h(
+          NButton,
+          {onclick:()=>window.alert('wow!')},
+          {default:()=>"查看详情"}
+        )
+      }
+    }
+  ];
+};
+const tableColumns = createColumns();
+
 </script>
 <style>
 #ping-form {

@@ -41,7 +41,7 @@ export default defineComponent({
         }
       })
       .catch(error=>{
-        console.log('有内鬼，停止交易')
+        console.log(error+'有内鬼，停止交易')
       })
     },
   },

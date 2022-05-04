@@ -1,0 +1,14 @@
+{
+  "results": [
+    {
+      "at": "2022-4-19",
+      "agent_name": "agent1",
+      "result": " Pinging xxx with 32 bytes of data......"
+    },
+    {
+      "at": "2022-4-19",
+      "agent_name": "agent2",
+      "result": " Pinging xxx with 32 bytes of data......"
+    }
+  ]
+}

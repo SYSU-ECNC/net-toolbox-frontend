@@ -1,0 +1,11 @@
+{
+  "agents":[
+  {
+        "name": "agent1",
+        "status": true
+  },
+  {
+        "name": "agent2",
+        "status": false
+  }
+  ]}
