@@ -7,5 +7,9 @@
   {
         "name": "agent2",
         "status": false
+  },
+  {
+        "name": "agent3",
+        "status": true
   }
   ]}

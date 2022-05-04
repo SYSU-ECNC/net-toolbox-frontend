@@ -4,14 +4,15 @@
     <n-button text type="info" id="register-token">注册Token:</n-button>
     <p id="real-token">这里是一个字符串这里是一个字符串</p>
     <n-button type="warning" secondary id="reset-token">重置Token</n-button>
-    <n-data-table id="agent-table" :columns="agentColumns" :data='agents'/>
+    <n-data-table id="agent-table" :columns="agentColumns" :data="agents" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent,h } from 'vue';
-import { NButton, NDataTable } from 'naive-ui';
+import { defineComponent } from 'vue';
+
 import axios from 'axios';
+import { NButton, NDataTable } from 'naive-ui';
 
 const createColumns = () => {
   return [
@@ -23,21 +24,8 @@ const createColumns = () => {
       title: '在线情况',
       key: 'disabled',
     },
-    {
-      title:'操作',
-      key:'action',
-      render(){
-        return h(
-          NButton,
-          {onclick:()=>window.alert('wow')},
-          {default:()=>"删除Agent"}
-        )
-        }
-      }
-    ]
-  }
-
-const agentColumns = createColumns();
+  ];
+};
 
 export default defineComponent({
   name: 'AgentManagement',
@@ -47,30 +35,28 @@ export default defineComponent({
   },
   data() {
     return {
-      agentColumns,
-      agents:[]
+      agents: [],
+      agentColumns: createColumns(),
     };
   },
-  mounted(){
-    axios.get('/agent.json')
-    .then(res=>{
-      var agent_data = res.data.list
-      agent_data = JSON.parse(JSON.stringify(agent_data))
-      for(let i = 0;i<agent_data.length;i++){
-        if(agent_data[i].status == false){
-          agent_data[i].disabled = '停用'
-        }else{
-          agent_data[i].disabled = '启用'
+  mounted() {
+    axios.get('/agent.json').then((res) => {
+      var agent_data = res.data.list;
+      agent_data = JSON.parse(JSON.stringify(agent_data));
+      for (let i = 0; i < agent_data.length; i++) {
+        if (agent_data[i].status == false) {
+          agent_data[i].disabled = '停用';
+        } else {
+          agent_data[i].disabled = '启用';
         }
-        delete agent_data[i].status
-        console.log(agent_data[i])
+        delete agent_data[i].status;
+        console.log(agent_data[i]);
       }
-      this.$data.agents = agent_data
-      return this.$data.agents
-    })
+      this.$data.agents = agent_data;
+      console.log(this.$data.agents);
+    });
   },
-  }
-)
+});
 </script>
 
 <style>
@@ -99,7 +85,7 @@ export default defineComponent({
   grid-column-end: 5;
   grid-row-start: 2;
 }
-#reset-token{
+#reset-token {
   grid-column-start: 5;
   grid-row-start: 2;
 }

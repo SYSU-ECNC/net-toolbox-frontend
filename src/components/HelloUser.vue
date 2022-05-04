@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 import axios from 'axios';
 
 export default defineComponent({
@@ -30,19 +31,20 @@ export default defineComponent({
         this.time = '下午';
       }
     },
-    getUserName(){
-      axios.get('/userInfo.json')
-      .then(res=>{
-        console.log(res.data)
-        if (res.data.loginUrl == ''){
-          this.username = res.data.name;
-        }else{
-          window.location.href=res.data.loginUrl;
-        }
-      })
-      .catch(error=>{
-        console.log(error+'有内鬼，停止交易')
-      })
+    getUserName() {
+      axios
+        .get('/userInfo.json')
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.loginUrl == '') {
+            this.username = res.data.name;
+          } else {
+            window.location.href = res.data.loginUrl;
+          }
+        })
+        .catch((error) => {
+          console.log(error + '有内鬼，停止交易');
+        });
     },
   },
   mounted() {
