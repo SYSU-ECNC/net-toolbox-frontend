@@ -62,6 +62,7 @@ export default defineComponent({
     NDataTable,
   },
   methods: {
+    //用来post ping指令
     goPing() {
       if(isNaN(parseInt(this.packNumber)) == false){
         var namestr = this.chosenValue.toString()
@@ -69,6 +70,7 @@ export default defineComponent({
         var command = 'ping'+' '+this.toPing+' '+'-n'+' '+parseInt(this.packNumber)
         let postdata = {'name':name,'command':command}
         console.log(postdata)
+        //这里要改成url，现在只有本地json所以运行会报错
         axios.post('/user/ping',postdata)
         .then(res=>{
           console.log(res);
@@ -84,8 +86,10 @@ export default defineComponent({
         window.alert('发包次数必须为整数，请重新输入')
       }
     },
+    //用来获取ping结果
     goSearch() {
       if(isNaN(parseInt(this.toSearch))==false){
+        //这里要改成url
         axios.get('/tasks/:'+parseInt(this.toSearch)+'.json')
         .then(res=>{
           let results = JSON.parse(JSON.stringify(res.data.results));
@@ -114,12 +118,14 @@ export default defineComponent({
   },
   mounted() {
     axios
+      //这里需要改成url
       .get('/task_list.json')
       .then((res) => {
         var tableData = res.data.task_list;
         this.tableData = tableData;
       })
       .catch((error) => console.log(error));
+    //这里要改成url
     axios.get('/agent.json').then((res) => {
       var agent_data = res.data.list;
       agent_data = JSON.parse(
