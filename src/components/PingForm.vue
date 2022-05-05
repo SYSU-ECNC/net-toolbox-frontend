@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 import axios from 'axios';
 import { NButton, NDataTable, NInput, NSelect } from 'naive-ui';
 
@@ -64,44 +65,55 @@ export default defineComponent({
   methods: {
     //用来post ping指令
     goPing() {
-      if(isNaN(parseInt(this.packNumber)) == false){
-        var namestr = this.chosenValue.toString()
-        var name = namestr.split(',')
-        var command = 'ping'+' '+this.toPing+' '+'-n'+' '+parseInt(this.packNumber)
-        let postdata = {'name':name,'command':command}
-        console.log(postdata)
+      if (isNaN(parseInt(this.packNumber)) == false) {
+        var namestr = this.chosenValue.toString();
+        var name = namestr.split(',');
+        var command =
+          'ping' +
+          ' ' +
+          this.toPing +
+          ' ' +
+          '-n' +
+          ' ' +
+          parseInt(this.packNumber);
+        let postdata = { name: name, command: command };
+        console.log(postdata);
         //这里要改成url，现在只有本地json所以运行会报错
-        axios.post('/user/ping',postdata)
-        .then(res=>{
-          console.log(res);
-          let status = res.data.status;
-          if (status == true){
-            window.alert('任务提交成功！')
-          }else{
-            window.alert('任务提交失败，请检查所填写的内容，稍后再试')
-          }
-        })
-        .catch(err=>{console.log('有内鬼！'+err)})
-      }else{
-        window.alert('发包次数必须为整数，请重新输入')
+        axios
+          .post('/user/ping', postdata)
+          .then((res) => {
+            console.log(res);
+            let status = res.data.status;
+            if (status == true) {
+              window.alert('任务提交成功！');
+            } else {
+              window.alert('任务提交失败，请检查所填写的内容，稍后再试');
+            }
+          })
+          .catch((err) => {
+            console.log('有内鬼！' + err);
+          });
+      } else {
+        window.alert('发包次数必须为整数，请重新输入');
       }
     },
     //用来获取ping结果
     goSearch() {
-      if(isNaN(parseInt(this.toSearch))==false){
+      if (isNaN(parseInt(this.toSearch)) == false) {
         //这里要改成url
-        axios.get('/tasks/:'+parseInt(this.toSearch)+'.json')
-        .then(res=>{
-          let results = JSON.parse(JSON.stringify(res.data.results));
-          let result_list = [];
-          for(let i=0;i<results.length;i++){
-            let result = results[i].agent_name+': '+results[i].result;
-            result_list.push(result)
-          }
-          window.alert(result_list)
-        })
-      }else{
-        window.alert('ID应为整数，请重新输入')
+        axios
+          .get('/tasks/:' + parseInt(this.toSearch) + '.json')
+          .then((res) => {
+            let results = JSON.parse(JSON.stringify(res.data.results));
+            let result_list = [];
+            for (let i = 0; i < results.length; i++) {
+              let result = results[i].agent_name + ': ' + results[i].result;
+              result_list.push(result);
+            }
+            window.alert(result_list);
+          });
+      } else {
+        window.alert('ID应为整数，请重新输入');
       }
     },
   },

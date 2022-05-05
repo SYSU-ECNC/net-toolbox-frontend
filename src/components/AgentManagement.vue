@@ -2,16 +2,29 @@
   <div id="agent-management">
     <h2 id="agent-title">Agent管理</h2>
     <n-button text type="info" id="register-token">注册Token:</n-button>
-    <p id="real-token">{{token}}</p>
-    <n-button type="warning" secondary id="reset-token" @click=refreshToken()>重置Token</n-button>
+    <p id="real-token">{{ token }}</p>
+    <n-button type="warning" secondary id="reset-token" @click="refreshToken()"
+      >重置Token</n-button
+    >
     <n-data-table id="agent-table" :columns="agentColumns" :data="agents" />
+    <h2 id="delete-agent">删除Agent</h2>
+    <n-input
+      id="delete-input"
+      v-model:value="toDelete"
+      type="text"
+      placeholder="在这里输入你要删除的agent name"
+    />
+    <n-button type="error" secondary id="delete-button" @click="deleteToken()"
+      >删除Agent</n-button
+    >
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 import axios from 'axios';
-import { NButton, NDataTable } from 'naive-ui';
+import { NButton, NInput, NDataTable } from 'naive-ui';
 
 const createColumns = () => {
   return [
@@ -36,33 +49,37 @@ export default defineComponent({
     return {
       agents: [],
       agentColumns: createColumns(),
-      token:''
+      token: '',
+      toDelete: '',
     };
   },
-  methods:{
-    getToken(){
-      axios.get('/token.json')
-      .then(res=>{
-        this.$data.token = res.data.token;
-        return(this.$data.token)
-      })
-      .catch(err=>{
-        console.log(err)
-      })
+  methods: {
+    getToken() {
+      axios
+        .get('/token.json')
+        .then((res) => {
+          this.$data.token = res.data.token;
+          return this.$data.token;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    refreshToken(){
-      axios.get('/new_token.json')
-      .then(res=>{
-        this.$data.token = res.data.token;
-        return(this.$data.token)
-      })
-      .catch(err=>{
-        console.log(err)
-      })
-    }
+    refreshToken() {
+      axios
+        .get('/new_token.json')
+        .then((res) => {
+          this.$data.token = res.data.token;
+          return this.$data.token;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    deleteToken() {},
   },
   mounted() {
-    this.getToken()
+    this.getToken();
     axios.get('/agent.json').then((res) => {
       var agent_data = res.data.list;
       agent_data = JSON.parse(JSON.stringify(agent_data));
@@ -116,5 +133,19 @@ export default defineComponent({
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 3;
+}
+#delete-agent{
+  grid-row-start: 4;
+  grid-column-start: 1;
+  justify-self: start;
+}
+#delete-input{
+  grid-row-start:5;
+  grid-column-start:1;
+  grid-column-end:5
+}
+#delete-button{
+  grid-column-start:5 ;
+  grid-row-start:5
 }
 </style>
