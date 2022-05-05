@@ -44,6 +44,7 @@ export default defineComponent({
   components: {
     NButton,
     NDataTable,
+    NInput
   },
   data() {
     return {
