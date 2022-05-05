@@ -87,7 +87,7 @@ export default defineComponent({
             if (status == true) {
               window.alert('任务提交成功！');
             } else {
-              window.alert('任务提交失败，请检查所填写的内容，稍后再试');
+              window.alert('任务提交失败，请检查所填写的内容，并稍后再试');
             }
           })
           .catch((err) => {

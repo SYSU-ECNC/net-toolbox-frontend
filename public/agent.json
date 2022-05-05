@@ -11,5 +11,9 @@
   {
         "name": "agent3",
         "status": true
+  },
+  {
+        "name":"agent666",
+        "status": false
   }
   ]}

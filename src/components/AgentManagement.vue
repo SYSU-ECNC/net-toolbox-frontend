@@ -14,7 +14,7 @@
       type="text"
       placeholder="在这里输入你要删除的agent name"
     />
-    <n-button type="error" secondary id="delete-button" @click="deleteToken()"
+    <n-button type="error" id="delete-button" @click="deleteToken()"
       >删除Agent</n-button
     >
   </div>
@@ -52,6 +52,7 @@ export default defineComponent({
       agentColumns: createColumns(),
       token: '',
       toDelete: '',
+      agent_list:[] as any //听我说谢谢你ts，不标类型会默认为never
     };
   },
   methods: {
@@ -77,12 +78,25 @@ export default defineComponent({
           console.log(err);
         });
     },
-    deleteToken() {},
+    deleteToken() {
+      if (this.agent_list.includes(this.$data.toDelete)==true){
+        let confirmFlag = window.confirm('确定要删除该Agent吗？')
+        if (confirmFlag == true){
+          let param = '{name:'+this.$data.toDelete+'}'
+          axios.delete('agent.json',{data:param})
+        }else{
+          console.log('取消了删除操作')
+        }
+      }else{
+        window.alert('未找到该Agent，请检查您输入的Agent name')
+      }
+    },
   },
   mounted() {
     this.getToken();
     axios.get('/agent.json').then((res) => {
-      var agent_data = res.data.list;
+      let agent_data = res.data.list;
+      let agent_list = []
       agent_data = JSON.parse(JSON.stringify(agent_data));
       for (let i = 0; i < agent_data.length; i++) {
         if (agent_data[i].status == false) {
@@ -91,11 +105,14 @@ export default defineComponent({
           agent_data[i].disabled = '启用';
         }
         delete agent_data[i].status;
-        console.log(agent_data[i]);
+        //获得一个agent list，方便删除agent时先查询所要删除的agent是否在列表中
+        console.log(agent_data[i].name)
+        agent_list.push(agent_data[i].name)
       }
       this.$data.agents = agent_data;
-      console.log(this.$data.agents);
-    });
+      this.$data.agent_list = agent_list
+    })
+    .catch(err=>console.log(err))
   },
 });
 </script>
